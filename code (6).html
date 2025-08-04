@@ -1,372 +1,379 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 Bulan Bersamamu</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Our 3 Months Together</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        
+        :root {
+            --pink: #ff6b98;
+            --red: #ff2e63;
+            --purple: #9e579d;
+            --dark: #393e46;
+            --light: #f7f7f7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fdf2f5;
-            color: #4a4a4a;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #f8e1e4, #f9d5e3);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--purple);
+        }
+        
+        /* Heart animation */
+        .heart-container {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            margin: 2rem 0;
+            overflow: hidden;
         }
         
         .heart {
-            width: 100px;
-            height: 100px;
-            background-color: #f76c82;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--red);
             transform: rotate(45deg);
-            position: relative;
-            animation: heartbeat 1.5s infinite;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
         }
         
-        .heart:before, .heart:after {
+        .heart:before,
+        .heart:after {
             content: '';
-            width: 100px;
-            height: 100px;
-            background-color: #f76c82;
+            width: 30px;
+            height: 30px;
+            background-color: var(--red);
             border-radius: 50%;
             position: absolute;
         }
         
         .heart:before {
-            top: -50px;
+            top: -15px;
             left: 0;
         }
         
         .heart:after {
             top: 0;
-            left: -50px;
+            left: -15px;
         }
         
-        @keyframes heartbeat {
-            0% { transform: rotate(45deg) scale(1); }
-            25% { transform: rotate(45deg) scale(1.1); }
-            50% { transform: rotate(45deg) scale(1); }
-            75% { transform: rotate(45deg) scale(1.1); }
-            100% { transform: rotate(45deg) scale(1); }
+        .heart:nth-child(2) {
+            left: 20%;
+            animation-delay: 1s;
+            background-color: var(--pink);
+        }
+        
+        .heart:nth-child(2):before,
+        .heart:nth-child(2):after {
+            background-color: var(--pink);
+        }
+        
+        .heart:nth-child(3) {
+            left: 40%;
+            animation-delay: 2s;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .heart:nth-child(3):before,
+        .heart:nth-child(3):after {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .heart:nth-child(4) {
+            left: 60%;
+            animation-delay: 0.5s;
+            background-color: var(--purple);
+        }
+        
+        .heart:nth-child(4):before,
+        .heart:nth-child(4):after {
+            background-color: var(--purple);
+        }
+        
+        .heart:nth-child(5) {
+            left: 80%;
+            animation-delay: 1.5s;
+            width: 25px;
+            height: 25px;
+        }
+        
+        .heart:nth-child(5):before,
+        .heart:nth-child(5):after {
+            width: 25px;
+            height: 25px;
+        }
+        
+        /* Letter */
+        .letter {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            position: relative;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        
+        .letter.open {
+            max-height: 1000px;
+        }
+        
+        .letter-content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out 0.3s;
+        }
+        
+        .letter.open .letter-content {
+            opacity: 1;
+        }
+        
+        .letter-btn {
+            background: linear-gradient(to right, var(--pink), var(--red));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Question */
+        .question {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question h3 {
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+        
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .option-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--pink);
+            background: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-btn:hover {
+            background-color: var(--pink);
+            color: white;
+        }
+        
+        .response {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--red);
+            min-height: 24px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: rotate(45deg) translateY(0);
+            }
+            50% {
+                transform: rotate(45deg) translateY(-20px);
+            }
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .fade-in {
-            animation: fadeIn 2s ease-in-out;
+        /* Decorative elements */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
         }
         
-        .polaroid {
-            background: white;
-            padding: 15px 15px 40px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: all 0.3s;
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--pink);
+            top: -50px;
+            left: -50px;
         }
         
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background-color: var(--purple);
+            bottom: -100px;
+            right: -100px;
         }
         
-        .message-box {
-            background: linear-gradient(135deg, #f8d9e4 0%, #ffeef2 100%);
-            border-left: 4px solid #f76c82;
-        }
-        
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
+        footer {
+            margin-top: 2rem;
+            color: var(--purple);
+            font-size: 0.9rem;
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Canvas untuk confetti -->
-    <canvas id="confetti-canvas"></canvas>
+<body>
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
     
-    <!-- Musik latar (autoplay akan bekerja setelah interaksi user) -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-    
-    <!-- Main Content -->
-    <div class="container mx-auto px-4 py-12">
-        <!-- Header dengan animasi -->
-        <header class="text-center mb-16 fade-in">
-            <div class="flex justify-center mb-6">
-                <div class="heart"></div>
-            </div>
-            <h1 class="text-5xl font-bold text-pink-600 mb-4">3 Bulan withh Rasya Sayunda!!!</h1>
-            <p class="text-xl text-gray-600">maaff ya sayangg aku ga ada disana waktu mensive 3 bulan kita huhuhu, jadinya aku iseng buatin ini wkwkw</p>
-        </header>
+    <div class="container">
+        <h1>Happy 3 Months Together!</h1>
+        <p class="subtitle">Every moment with you is a blessing ♡</p>
         
-        <!-- Galeri Foto -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-semibold text-center mb-12 text-pink-600">flashback duluu gasiiee</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Foto 1 -->
-                <div class="polaroid">
-                    <img src="https://i.postimg.cc/447qBqzz/Whats-App-Image-2025-08-04-at-16-27-24-32dfae42.jpg" alt="Kita berdua tersenyum di taman bunga dengan matahari terbenam di belakang" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">the first day we meet, jujur kamu cantik banget disinii!!!</p>
-                </div>
-                
-                <!-- Foto 2 -->
-                <div class="polaroid">
-                    <img src="https://i.postimg.cc/B6yyJBGL/Whats-App-Image-2025-08-04-at-16-32-54-b4b0f847.jpg" alt="Kita berfoto selfie dengan ekspresi lucu di depan cermin restoran" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">setelah lama asing..ketemu lagi di IKRAR ciee emang jodoh ga kemana</p>
-                </div>
-                
-                <!-- Foto 3 -->
-                <div class="polaroid">
-                    <img src="https://i.postimg.cc/fb8prh2v/Whats-App-Image-2025-08-04-at-16-32-54-443166d2.jpg" alt="Kita berpegangan tangan di tepi pantai dengan ombak menerpa kaki" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">agak shock yee tiba tiba ngajak mirror selfie si doi</p>
-                </div>
-                
-                <!-- Foto 4 -->
-                <div class="polaroid hidden md:block">
-                    <img src="https://i.postimg.cc/P5zB1D19/Whats-App-Image-2025-08-04-at-16-32-55-afdc824f.jpg" alt="Kita berdua menggunakan hoodie matching dengan background kota malam hari" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">temenin kamu nugass,n first time liat kamu pake gaun cantikk bvvaangeett</p>
-                </div>
-                
-                <!-- Foto 5 -->
-                <div class="polaroid hidden lg:block">
-                    <img src="https://i.postimg.cc/fyGvrHQC/Whats-App-Image-2025-08-04-at-16-32-55-07eac0d4.jpg" alt="Kita tertawa bersama sambil memegang es krim di hari yang cerah" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">nemenin doi bm sama set n rise, enakk 10/10</p>
-                </div>
-                
-                <!-- Foto 6 -->
-                <div class="polaroid hidden lg:block">
-                    <img src="https://i.postimg.cc/tJxcJnXr/Whats-App-Image-2025-08-04-at-16-32-55-766ad448.jpg" alt="Foto candid kita sedang memperhatikan sesuatu dengan ekspresi serius tapi lucu" class="w-full h-auto">
-                    <p class="text-center mt-2 text-gray-700">maskeran barengg, lucu amayy</p>
-                </div>
-            </div>
-        </section>
+        <div class="heart-container">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
         
-        <!-- Surat Cinta -->
-        <section class="max-w-2xl mx-auto mb-20">
-            <div class="message-box p-8 rounded-lg shadow-md fade-in">
-                <h2 class="text-2xl font-semibold mb-6 text-pink-600">Untuk Yang Tersayang...</h2>
-                
-                <div class="space-y-4 text-gray-700">
-                    <p>Yuhuuu~ hari ini kita resmi 3 bulan! 🎉💖Nggak nyangka ya, udah sejauh ini aja!Kayak baru kemarin ngobrol awkward, eh sekarang udah bisa becanda kayak bocah 😆</p>
-                    
-                    <p>Tiga bulan mungkin belum lama-lama banget,tapi cukup buat bikin aku senyum-senyum sendiri kalau inget kamu.Makasih udah jadi orang yang nyebelin tapi selalu bikin kangen 🙃Makasih juga udah sabar sama semua sifat sifat aku yang kadang nyeleneh wkowk 🤪</p>
-                    
-                    <p>Semoga ke depannya makin banyak cerita seru yang bisa kita lewatin bareng.Yang penting, kamu jangan bosen ya!Karena aku, udah keburu betah sama kamu 😝</p>
-                    
-                    <p>Ini baru tiga bulan, sayangku. Masih banyak waktu untuk kita tumbuh bersama, belajar bersama, dan saling mencintai lebih dalam lagi. Aku tidak sabar untuk mengenalmu lebih banyak di bulan-bulan mendatang.</p>
-                    
-                    <p>Happy 3 months, sayang~ 💕Let’s keep going, satu bulan ke bulan berikutnya! 🚀✨</p>
-                    
-                    <p class="text-right font-semibold mt-8 text-pink-600">- Untuk Aca yang selalu ada di hatiku</p>
-                </div>
-            </div>
-        </section>
+        <button class="letter-btn" id="letterBtn">Open My Letter to You</button>
         
-        <!-- Hitung Mundur -->
-        <section class="text-center mb-16 fade-in">
-            <h2 class="text-3xl font-semibold mb-6 text-pink-600">Hitung Mundur Bulan Selanjutnya</h2>
-            <div class="flex justify-center space-x-4" id="countdown">
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <div class="text-4xl font-bold text-pink-600" id="days">--</div>
-                    <div class="text-gray-600">Hari</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <div class="text-4xl font-bold text-pink-600" id="hours">--</div>
-                    <div class="text-gray-600">Jam</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <div class="text-4xl font-bold text-pink-600" id="minutes">--</div>
-                    <div class="text-gray-600">Menit</div>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <div class="text-4xl font-bold text-pink-600" id="seconds">--</div>
-                    <div class="text-gray-600">Detik</div>
-                </div>
+        <div class="letter" id="letter">
+            <div class="letter-content">
+                <p>Dear Love,</p>
+                <p>Three months may not seem like a long time, but with you, every day feels special and meaningful. You've brought so much joy, laughter, and love into my life in these short months.</p>
+                <p>I cherish all our moments together, from the silly jokes only we understand to the quiet times when we're just enjoying each other's company. You make even ordinary days feel extraordinary.</p>
+                <p>Thank you for being you - your kindness, your smile, your wonderful heart. I'm excited for all the months and years to come, growing together and creating more beautiful memories.</p>
+                <p>With all my heart,<br>Your Love</p>
             </div>
-        </section>
+        </div>
         
-        <!-- Tombol Surprise -->
-        <div class="text-center fade-in">
-            <button id="surpriseBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-lg">
-                Klik untuk Kejutan!
-            </button>
+        <div class="question">
+            <h3>Will you continue this beautiful journey with me?</h3>
+            <div class="options">
+                <button class="option-btn" onclick="showResponse('ofcourse')">Of Course!</button>
+                <button class="option-btn" onclick="showResponse('always')">Always ♡</button>
+                <button class="option-btn" onclick="showResponse('forever')">Forever</button>
+            </div>
+            <div class="response" id="response"></div>
         </div>
     </div>
     
+    <footer>Made with love for you ♡</footer>
+    
     <script>
-        // Fungsi untuk memulai musik setelah interaksi user
-        document.addEventListener('DOMContentLoaded', function() {
-            const music = document.getElementById('bgMusic');
-            const surpriseBtn = document.getElementById('surpriseBtn');
-            
-            // Mulai musik ketika tombol diklik pertama kali
-            surpriseBtn.addEventListener('click', function() {
-                music.play().catch(e => console.log("Autoplay prevented:", e));
-                launchConfetti();
-                this.textContent = "Aku Cinta Kamu!";
-                this.classList.add('animate-bounce');
-                
-                // Tambahkan efek hati kecil yang jatuh
-                createFallingHearts();
-            }, { once: true });
-            
-            // Set hitung mundur untuk bulan berikutnya (30 hari dari sekarang)
-            setCountdown();
-            
-            // Set musik volume
-            music.volume = 0.3;
+        // Letter toggle
+        const letterBtn = document.getElementById('letterBtn');
+        const letter = document.getElementById('letter');
+        
+        letterBtn.addEventListener('click', () => {
+            letter.classList.toggle('open');
+            letterBtn.textContent = letter.classList.contains('open') ? 'Close Letter' : 'Open My Letter to You';
         });
         
-        function setCountdown() {
-            // Set target date (3 bulan + 1 hari dari sekarang)
-            const now = new Date();
-            const targetDate = new Date(now);
-            targetDate.setMonth(targetDate.getMonth() + 3);
-            targetDate.setDate(targetDate.getDate() + 1);
+        // Question response
+        function showResponse(type) {
+            const response = document.getElementById('response');
+            const responses = {
+                ofcourse: "I knew you'd say that! Can't wait for many more months together ♡",
+                always: "My heart knew you'd choose this. I'll always choose you too.",
+                forever: "That's exactly what I hoped you'd say. Forever it is."
+            };
             
-            function updateCountdown() {
-                const now = new Date();
-                const diff = targetDate - now;
-                
-                if (diff <= 0) {
-                    document.getElementById('countdown').innerHTML = '<div class="text-2xl text-pink-600">Selamat! Kita sekarang sudah 4 bulan bersama!</div>';
-                    return;
-                }
-                
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
-            }
+            response.textContent = responses[type];
             
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            // Create a small heart animation
+            createFloatingHeart();
         }
         
-        function launchConfetti() {
-            const canvas = document.getElementById('confetti-canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        // Create floating hearts
+        function createFloatingHeart() {
+            const colors = ['#ff6b98', '#ff2e63', '#9e579d'];
             
-            const ctx = canvas.getContext('2d');
-            const particles = [];
-            const colors = ['#f76c82', '#ff8e9e', '#ffb6c1', '#ffd1dc', '#ffebf0'];
-            
-            // Buat partikel confetti
-            for (let i = 0; i < 150; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: -Math.random() * canvas.height,
-                    radius: Math.random() * 10 + 5,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    speed: Math.random() * 3 + 2,
-                    rotation: Math.random() * 360,
-                    rotationSpeed: Math.random() * 10 - 5
-                });
-            }
-            
-            // Animasikan confetti
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 80 + 10}%`;
+                heart.style.top = '150px';
+                heart.style.width = `${Math.random() * 20 + 10}px`;
+                heart.style.height = heart.style.width;
+                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.animation = `float ${Math.random() * 3 + 3}s ease-in-out infinite ${Math.random() * 2}s`;
                 
-                particles.forEach(particle => {
-                    ctx.save();
-                    ctx.translate(particle.x, particle.y);
-                    ctx.rotate(particle.rotation * Math.PI / 180);
-                    
-                    ctx.beginPath();
-                    ctx.arc(0, 0, particle.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = particle.color;
-                    ctx.fill();
-                    
-                    ctx.restore();
-                    
-                    particle.y += particle.speed;
-                    particle.rotation += particle.rotationSpeed;
-                    
-                    if (particle.y > canvas.height + particle.radius) {
-                        particle.y = -particle.radius;
-                        particle.x = Math.random() * canvas.width;
-                    }
-                });
+                document.querySelector('.heart-container').appendChild(heart);
                 
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Hapus canvas setelah 5 detik
-            setTimeout(() => {
-                canvas.style.opacity = '0';
                 setTimeout(() => {
-                    canvas.style.display = 'none';
-                }, 1000);
-            }, 5000);
+                    heart.remove();
+                }, 5000);
+            }
         }
         
-        function createFallingHearts() {
-            const heartsContainer = document.createElement('div');
-            heartsContainer.style.position = 'fixed';
-            heartsContainer.style.top = '0';
-            heartsContainer.style.left = '0';
-            heartsContainer.style.width = '100%';
-            heartsContainer.style.height = '100%';
-            heartsContainer.style.pointerEvents = 'none';
-            heartsContainer.style.zIndex = '998';
-            document.body.appendChild(heartsContainer);
-            
-            // Buat 15 hati kecil yang jatuh
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '❤️';
-                    heart.style.position = 'absolute';
-                    heart.style.fontSize = '30px';
-                    heart.style.color = '#f76c82';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    heart.style.top = '-30px';
-                    heart.style.animation = `falling-heart ${Math.random() * 3 + 2}s linear forwards`;
-                    
-                    // Tambahkan animasi CSS untuk jatuh
-                    const style = document.createElement('style');
-                    style.textContent = `
-                        @keyframes falling-heart {
-                            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    
-                    heartsContainer.appendChild(heart);
-                    
-                    // Hapus hati setelah animasi selesai
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 5000);
-                }, i * 300);
-            }
-            
-            // Hapus container setelah semua hati jatuh
-            setTimeout(() => {
-                heartsContainer.remove();
-            }, 8000);
-        }
+        // Auto-create floating hearts occasionally
+        setInterval(createFloatingHeart, 3000);
     </script>
 </body>
 </html>
+
